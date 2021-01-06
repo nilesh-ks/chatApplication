@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58067958753",
+    "firebase_url": "https://chatapplication-5e5c5-default-rtdb.firebaseio.com",
+    "project_id": "chatapplication-5e5c5",
+    "storage_bucket": "chatapplication-5e5c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58067958753:android:96bec27a6bc71dd54cf0a0",
+        "android_client_info": {
+          "package_name": "com.internshala.chatapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58067958753-qmlf5ok5qsj60c3tj2uduss5t6it59v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9MzQWLOLAtNqg45uCzWu82HVT6v29nfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58067958753-qmlf5ok5qsj60c3tj2uduss5t6it59v0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
