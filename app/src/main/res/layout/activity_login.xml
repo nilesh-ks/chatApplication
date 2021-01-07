@@ -1,137 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layoutLogin"
     android:background="@drawable/ic_base"
-    tools:context=".activities.LoginActivity"    >
+    tools:context=".activities.LoginActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerInParent="true" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_left"
-        android:layout_width="24dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="46dp"
-        app:layout_constraintGuide_end="379dp" />
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/guideline_left"-->
+    <!--        android:layout_width="24dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_begin="46dp"-->
+    <!--        app:layout_constraintGuide_end="379dp" />-->
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_right"
-        android:layout_width="24dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="50dp" />
+    <!--    <androidx.constraintlayout.widget.Guideline-->
+    <!--        android:id="@+id/guideline_right"-->
+    <!--        android:layout_width="24dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_end="50dp" />-->
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="144dp"
         android:layout_height="129dp"
-        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/ic_speech_bubble"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@+id/demo_app_name"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/demo_app_name"
+        android:layout_above="@+id/demo_c_name"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="6dp"
         android:fontFamily="monospace"
         android:gravity="center_horizontal"
         android:text="APPLICATION NAME"
         android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/username"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="25sp" />
 
     <TextView
+
         android:id="@+id/demo_c_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="55dp"
-        android:gravity="center_horizontal"
+        android:layout_above="@id/layoutInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:text="Powered by COMPANY NAME"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/username"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/demo_app_name"
-        app:layout_constraintVertical_bias="0.272" />
+        android:textAlignment="center" />
 
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="263dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/details_bg"
-        android:cursorVisible="true"
-        android:hint="Username"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+    <RelativeLayout
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordLayout"
-        android:layout_width="335dp"
-        android:layout_height="74dp"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        app:passwordToggleEnabled="true">
+        android:id="@+id/layoutInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
+
+        <EditText
+            android:id="@+id/username"
             android:layout_width="263dp"
             android:layout_height="54dp"
-            android:layout_marginStart="46dp"
-
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-
+            android:layout_centerHorizontal="true"
             android:background="@drawable/details_bg"
             android:cursorVisible="true"
-            android:hint="@string/password"
-            android:inputType="textPassword"
+            android:hint="Username"
+            android:inputType="textEmailAddress"
             android:padding="16dp" />
-    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:layout_centerHorizontal="true"
+
+            android:textAlignment="center"
+
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="263dp"
+                android:layout_height="54dp"
+                android:background="@drawable/details_bg"
+                android:cursorVisible="true"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="16dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </RelativeLayout>
+
 
     <Button
-
+        android:layout_below="@+id/forgot_password"
         android:id="@+id/buttonLogin"
         android:layout_width="219dp"
         android:layout_height="69dp"
@@ -143,37 +120,30 @@
         android:background="@drawable/login_button_bg"
         android:text="@string/log_in"
         android:textSize="27sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+        android:layout_centerHorizontal="true" />
 
     <CheckBox
         android:id="@+id/checkbox_logged_in"
         android:layout_width="155dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_below="@id/buttonLogin"
         android:text="@string/keep_me_logged_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        app:layout_constraintVertical_bias="0.046" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:id="@+id/forgot_password"
-        android:layout_width="130dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/layoutInput"
+        android:layout_alignEnd="@id/layoutInput"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
         android:clickable="true"
-        android:text="Reset Password"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+        android:focusable="true"
+        android:text="@string/reset_password"
+        android:textSize="16sp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

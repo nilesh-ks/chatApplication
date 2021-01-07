@@ -27,7 +27,7 @@ lateinit var checkBox: CheckBox
 lateinit var forgot_password:TextView
 lateinit var auth: FirebaseAuth
 lateinit var user: FirebaseUser
-lateinit var layoutLogin:ConstraintLayout
+lateinit var layoutLogin:RelativeLayout
 lateinit var sharedPreferences: SharedPreferences
 
 class LoginActivity : AppCompatActivity() {
@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             if(ConnectionManager().checkConnectivity(this)){
+                progressBar.visibility=View.VISIBLE
                 signIn()
             }
             else{
@@ -87,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
             progressBar.visibility=View.VISIBLE
             val intent=Intent(this,ResetPasswordActivity::class.java)
             startActivity(intent)
+            progressBar.visibility=View.GONE
 //            val resetPasswordFragment=ResetPasswordFragment()
 //            val fragmentTransaction:FragmentTransaction=supportFragmentManager.beginTransaction()
 //            fragmentTransaction.replace(R.id.layoutLogin,resetPasswordFragment).commit()
@@ -103,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
         val userEmail: String = inputUsername.text.toString()
         val userPassword: String = inputPassword.text.toString()
 
-        progressBar.visibility=View.VISIBLE
+
         auth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener { loginTask ->
             if (loginTask.isSuccessful) {
                 Toast.makeText(this, "Authentication Successful", Toast.LENGTH_SHORT).show()
@@ -112,11 +114,31 @@ class LoginActivity : AppCompatActivity() {
                 if (checkBox.isChecked){
                     sharedPreferences.edit().putBoolean("isLoggedIn", true).commit()
                 }
-
+                progressBar.visibility=View.INVISIBLE
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(this, "Authentication failed!", Toast.LENGTH_SHORT).show()
+                progressBar.visibility=View.INVISIBLE
+                val msg=loginTask.exception.toString()
+                println("error:  $msg")
+                if (msg.contains("badly formatted",true)){
+                    Toast.makeText(this, "Enter a correct email address", Toast.LENGTH_SHORT).show()
+                }
+                else if (msg.contains("no user record",true)){
+                    Toast.makeText(this, "No user found on this email id", Toast.LENGTH_SHORT).show()
+                }
+                else if (msg.contains("password is invalid",true)){
+                    Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show()
+                }
+                else if (msg.contains("We have blocked",true)){
+                    Toast.makeText(this, "Access to this account has been temporarily disabled " +
+                            "due to many failed login attempts." +
+                            " You can immediately restore it by resetting your " +
+                            "password or you can try again later", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                }
             }
             progressBar.visibility=View.INVISIBLE
         }
@@ -137,7 +159,10 @@ class LoginActivity : AppCompatActivity() {
             inputUsername.error = "Required"
             valid = false
         }
-
+        if (!TextUtils.isEmpty(email.trim())&&!email.trim().contains("@")){
+            inputUsername.error = "Invalid email"
+            valid = false
+        }
         if (TextUtils.isEmpty(password.trim())) {
             inputPassword.error = "Required"
             valid = false

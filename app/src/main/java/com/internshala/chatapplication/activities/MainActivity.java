@@ -6,14 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.internshala.chatapplication.R;
@@ -23,18 +27,16 @@ public class MainActivity extends AppCompatActivity {
 
 //    private Button btnLogout;
     private FirebaseAuth auth;
-
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth=FirebaseAuth.getInstance();
+        progressBar=findViewById(R.id.progressBarMain);
+        progressBar.setVisibility(View.GONE);
 
 
-//        btnLogout=findViewById(R.id.btnLogout);
-//        btnLogout.setOnClickListener(view -> {
-//            logout();
-//        });
     }
     private void logout(){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
@@ -42,11 +44,14 @@ public class MainActivity extends AppCompatActivity {
         dialog.setMessage("Do you want to Log out?");
         dialog.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialogInterface,int d){
+                progressBar.setVisibility(View.VISIBLE);
                 auth.signOut();
                 SharedPreferences sharedPreferences=getSharedPreferences(getString(R.string.preferences),MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean("isLoggedIn",false).commit();
-                Intent intent=new Intent(new MainActivity(),LoginActivity.class);
+                Context context=getApplicationContext();
+                Intent intent=new Intent(context,LoginActivity.class);
                 startActivity(intent);
+                progressBar.setVisibility(View.GONE);
                 finish();
             }
 
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finishAffinity();
+        finish();
         super.onBackPressed();
     }
 
