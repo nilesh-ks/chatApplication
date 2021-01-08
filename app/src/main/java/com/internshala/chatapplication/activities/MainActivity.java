@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        finishAffinity();
         super.onBackPressed();
     }
 
@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.menu_layout,menu);
         return true;
+    }
+    void openProfile(){
+        
     }
 
     @SuppressLint("NonConstantResourceId")
